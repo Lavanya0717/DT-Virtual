@@ -10,9 +10,10 @@ public class invokeMethod {
 
 	public static void main(String[] args) {
 			
-		UserDao im=new UserDaoImpl();
-		List<User>dao=im.getUsers();
-		System.out.println(dao.get(0).getName());
+		//UserDaoImpl im=new UserDaoImpl();
+		//List<User>dao=im.getUsers();
+		//System.out.println(dao.get(0).getName());
+		
 		
 
 	}
