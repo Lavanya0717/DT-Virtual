@@ -2,10 +2,11 @@ package com.Model;
 
 import java.io.Serializable;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
-@Entity
 
+@Entity
 public class User implements Serializable 
 {
 
@@ -16,11 +17,17 @@ public class User implements Serializable
 	
 	@Id
 	private String email;
+	@Column
 	private String name;
+	@Column
 	private String phone;
+	@Column
 	private String address;
+	@Column
 	private String password;
+	@Column
 	private String country;
+	@Column
 	private String gender;
 	
 	
