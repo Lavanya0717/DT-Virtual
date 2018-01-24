@@ -1,12 +1,15 @@
 package com.Dao;
 
+
 import java.util.List;
 
 import com.Model.User;
 
 public interface UserDao {
 
+		/*List<User>list();*/
 		
-	public boolean addUserDetails(User userDetails);
-	public boolean validateUser(String username,String password);
+		boolean add(User user);
+	/*public boolean addUserDetails(User userDetails);*/
+	/*public boolean validateUser(String name,String password);*/
 }

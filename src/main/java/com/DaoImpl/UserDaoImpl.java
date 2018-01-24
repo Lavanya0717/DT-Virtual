@@ -1,60 +1,96 @@
 package com.DaoImpl;
 
+
 import java.util.ArrayList;
 import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-import org.hibernate.query.Query;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
+
+import org.springframework.transaction.annotation.Transactional;
 
 import com.Dao.UserDao;
 import com.Model.User;
 
-@Repository
+/*@Repository("userDao")
 public class UserDaoImpl implements UserDao {
+	
+	
+	@Autowired
+	private SessionFactory sessionFactory;
+	
+	private static List<User> users=new ArrayList<User>();
+	
+	static{
+		User user=new User();
+		user.setEmail("lavuitplacid@gmail.com");
+		user.setAddress("chennai");
+		user.setCountry("india");
+		user.setGender("female");
+		user.setName("lavanya");
+		user.setPassword("abc");
+		user.setPhone("1234567890");
+		
+		users.add(user);
+		
+		
+	}
+	
+	
+	
+	public List<User> list() {
+		// TODO Auto-generated method stub
+		return users;
+	}
 
+
+
+	@Transactional
+	public boolean add(User user) {
+		// TODO Auto-generated method stub
+		
+		try{
+			sessionFactory.getCurrentSession().persist(user);
+			return true;
+		}
+		catch(Exception e){
+			e.printStackTrace();
+			return false;
+		}
+		
+		
+		
+	}
+
+	
+
+}
+*/
+
+@Repository("userDao")
+public class UserDaoImpl implements UserDao {
 	@Autowired
 	SessionFactory sessionFactory;
 
 	public UserDaoImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
-	
-	
-	
-	
-	
-	
-	public boolean addUserDetails(User userDetails) {
+
+	@Transactional
+	public boolean add(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.saveOrUpdate(userDetails);
+			session.saveOrUpdate(user);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
-	
-
-	public boolean validateUser(String username, String password) {
-		Session session = sessionFactory.openSession();
-		Query<User> query=session.createQuery("from UserDetails where name=:user and password=:pass");
-		query.setParameter("user", username);
-		query.setParameter("pass",password);
-		List<User> list=query.list();
-		session.close();
-		for(User user:list)
-			if (username.equals(user.getName()) && password.equals(user.getPassword()))
-					return true;
-		return false;
-	}
 
 }
-
-
-
 	
 		
 

@@ -6,7 +6,16 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;
 
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+
+
+
+
+
 @Entity
+@Component
 public class User implements Serializable 
 {
 
@@ -14,6 +23,7 @@ public class User implements Serializable
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
+	
 	
 	@Id
 	private String email;
@@ -74,14 +84,13 @@ public class User implements Serializable
 		this.gender = gender;
 	}
 	
-	public User(String name,String email)
-	{
-		this.name=name;
-		this.email=email;
-		
-	
-		
+	@Override
+	public String toString() {
+		return "User [email=" + email + ", name=" + name + ", phone=" + phone + ", address=" + address + ", password="
+				+ password + ", country=" + country + ", gender=" + gender + "]";
 	}
+	
+	
 	
 	
 	}
