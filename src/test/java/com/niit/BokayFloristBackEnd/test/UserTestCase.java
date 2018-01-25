@@ -1,4 +1,4 @@
-package com.bean.BokayFloristBackEnd.test;
+package com.niit.BokayFloristBackEnd.test;
 
 
 
@@ -20,9 +20,9 @@ public class UserTestCase {
 	
 	
 	@BeforeClass
-	public static void beforeTest(){
+	public static void setup(){
 
-		System.out.println("step3");
+		
 		context=new AnnotationConfigApplicationContext();
 		context.scan("com");
 		context.refresh();
@@ -36,6 +36,7 @@ public class UserTestCase {
 		User user=(User)context.getBean("user");
 		UserDao userDao=(UserDao)context.getBean("userDao");
 		
+		
 		user.setEmail("lavuitplacid@gmail.com");
 		user.setAddress("chennai");
 		user.setCountry("india");
@@ -48,7 +49,7 @@ public class UserTestCase {
 	}
 	
 	@AfterClass
-	public static void afterTest(){
+	public static void teardown(){
 		context.close();
 	}
 	

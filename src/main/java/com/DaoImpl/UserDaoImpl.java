@@ -15,60 +15,7 @@ import org.springframework.transaction.annotation.Transactional;
 import com.Dao.UserDao;
 import com.Model.User;
 
-/*@Repository("userDao")
-public class UserDaoImpl implements UserDao {
-	
-	
-	@Autowired
-	private SessionFactory sessionFactory;
-	
-	private static List<User> users=new ArrayList<User>();
-	
-	static{
-		User user=new User();
-		user.setEmail("lavuitplacid@gmail.com");
-		user.setAddress("chennai");
-		user.setCountry("india");
-		user.setGender("female");
-		user.setName("lavanya");
-		user.setPassword("abc");
-		user.setPhone("1234567890");
-		
-		users.add(user);
-		
-		
-	}
-	
-	
-	
-	public List<User> list() {
-		// TODO Auto-generated method stub
-		return users;
-	}
 
-
-
-	@Transactional
-	public boolean add(User user) {
-		// TODO Auto-generated method stub
-		
-		try{
-			sessionFactory.getCurrentSession().persist(user);
-			return true;
-		}
-		catch(Exception e){
-			e.printStackTrace();
-			return false;
-		}
-		
-		
-		
-	}
-
-	
-
-}
-*/
 
 @Repository("userDao")
 public class UserDaoImpl implements UserDao {

@@ -5,7 +5,7 @@ import java.util.Properties;
 import javax.sql.DataSource;
 
 import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
+
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -18,7 +18,7 @@ import com.Model.User;
 
 
 @Configuration
-@ComponentScan("com.config")
+@ComponentScan("com.bean.BokayFloristBackEnd")
 @EnableTransactionManagement
 public class hibernateConfig {
 	@Bean(name="dataSource")
@@ -42,7 +42,7 @@ public class hibernateConfig {
 		sessionFactBuilder.addAnnotatedClass(User.class);
 		return sessionFactBuilder.buildSessionFactory();
 	}
-    @Autowired
+    
 	@Bean(name="txManager")
 	public HibernateTransactionManager getTransactionManager(){
 		HibernateTransactionManager txm = new HibernateTransactionManager(getSessionFactory());

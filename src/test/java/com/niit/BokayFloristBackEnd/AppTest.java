@@ -1,4 +1,4 @@
-package com.bean.BokayFloristBackEnd;
+package com.niit.BokayFloristBackEnd;
 
 import junit.framework.Test;
 import junit.framework.TestCase;
