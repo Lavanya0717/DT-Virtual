@@ -18,7 +18,7 @@ import com.Model.User;
 
 
 @Configuration
-@ComponentScan("com.bean.BokayFloristBackEnd")
+@ComponentScan("com")
 @EnableTransactionManagement
 public class hibernateConfig {
 	@Bean(name="dataSource")
@@ -39,7 +39,9 @@ public class hibernateConfig {
 		prop.put("hibernate.show_sql","true");
 		LocalSessionFactoryBuilder sessionFactBuilder = new LocalSessionFactoryBuilder(getDataSource());
 		sessionFactBuilder.addProperties(prop);
-		sessionFactBuilder.addAnnotatedClass(User.class);
+		/*sessionFactBuilder.addAnnotatedClass(User.class);*/
+		sessionFactBuilder.scanPackages("com");
+		
 		return sessionFactBuilder.buildSessionFactory();
 	}
     
