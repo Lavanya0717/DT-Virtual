@@ -8,49 +8,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.Dao.SupplierDao;
-import com.Model.Supplier;
+import com.Dao.CategoryDAO;
+import com.Model.Category;
 
-@Repository("supplierDao")
-public class SupplierDaoImpl implements SupplierDao {
+@Repository("categoryDAO")
+public class CategoryDAOImpl implements CategoryDAO {
 
 	@Autowired
 	SessionFactory sessionFactory;
-	
-	public SupplierDaoImpl(SessionFactory sessionFactory) {
+
+	public CategoryDAOImpl(SessionFactory sessionFactory) {
 		this.sessionFactory = sessionFactory;
 	}
+
 	
-	@Transactional
 	@Override
-	public boolean addSupplier(Supplier supplier) {
+	@Transactional
+	public boolean addCategory(Category category) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.save(supplier);
+			session.save(category);
 			return true;
 		} catch (Exception e) {
 			return false;
 		}
 	}
 	
-	@Transactional
+
 	@Override
-	public boolean deleteSupplier(Supplier supplier) {
+	@Transactional
+	public boolean deleteCategory(Category category) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
-			session.delete(supplier);
-			return true;
-		} catch (Exception e) {
-			return false;
-		}
-	}
-	
-	@Transactional
-	@Override
-	public boolean updateSupplier(Supplier supplier) {
-		Session session = sessionFactory.getCurrentSession();
-		try {
-			session.update(supplier);
+			session.delete(category);
 			return true;
 		} catch (Exception e) {
 			return false;
@@ -58,22 +48,38 @@ public class SupplierDaoImpl implements SupplierDao {
 	}
 
 	@Override
-	public Supplier getSupplierById(int id) {
+	@Transactional
+	public boolean updateCategory(Category category) {
+		Session session = sessionFactory.getCurrentSession();
+		try {
+			session.update(category);
+			return true;
+		} catch (Exception e) {
+			return false;
+		}
+	}
+
+	@Override
+	public Category getCategoryById(int id) {
 		Session session = sessionFactory.openSession();
 		try {
-			Supplier supplier=session.get(Supplier.class,id);
+			Category category=session.get(Category.class,id);
 			session.close();
-			return supplier;
+			return category;
 		} catch (Exception e) {
 			session.close();
 			return null;
 		}
 		
 	}
+
+
 	@Override
-	public List<Supplier> getAllSupplier() {
+	public List<Category> getAllCategory() {
 		Session session = sessionFactory.openSession();
-		List<Supplier> list=session.createQuery("from Supplier",Supplier.class).list();
+		List<Category> list=session.createQuery("from Category",Category.class).list();
 		return list;
 	}
 }
+	
+

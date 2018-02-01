@@ -16,6 +16,7 @@ public class Supplier {
 	@GeneratedValue(strategy = GenerationType.AUTO)
 	private int sid;
 	private String supplierName;
+	
 	public int getSid() {
 		return sid;
 	}
