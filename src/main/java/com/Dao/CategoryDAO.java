@@ -2,9 +2,8 @@ package com.Dao;
 import java.util.List;
 
 import com.Model.Category;
-public interface CategoryDAO {
-	
 
+public interface CategoryDAO {
 	
 	
 		public boolean addCategory(Category category);
