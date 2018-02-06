@@ -8,7 +8,7 @@ import com.Model.User;
 public interface UserDao {
 
 		
-		
-		boolean add(User user);
+	public boolean addUserDetails(User user);
+	public boolean validateUser(String username,String password);
 	
 }

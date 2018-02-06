@@ -1,4 +1,4 @@
-package com.niit.BokayFloristBackEnd.test;
+/*package com.niit.BokayFloristBackEnd.test;
 
 import static org.junit.Assert.assertEquals;
 
@@ -51,3 +51,4 @@ static AnnotationConfigApplicationContext context;
 }
 	
 
+*/

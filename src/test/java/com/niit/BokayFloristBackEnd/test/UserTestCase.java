@@ -1,4 +1,4 @@
-package com.niit.BokayFloristBackEnd.test;
+/*package com.niit.BokayFloristBackEnd.test;
 
 
 
@@ -56,4 +56,4 @@ public class UserTestCase {
 }
 	
 	
-	
+	*/

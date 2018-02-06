@@ -6,7 +6,7 @@ import java.util.List;
 
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
-
+import org.hibernate.query.Query;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 	}
 
 	@Transactional
-	public boolean add(User user) {
+	public boolean addUserDetails(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
 			session.saveOrUpdate(user);
@@ -36,7 +36,18 @@ public class UserDaoImpl implements UserDao {
 			return false;
 		}
 	}
-
+	public boolean validateUser(String username, String password) {
+		Session session = sessionFactory.openSession();
+		Query<User> query=session.createQuery("from User where username=:user and password=:pass");
+		query.setParameter("user", username);
+		query.setParameter("pass",password);
+		List<User> list=query.list();
+		session.close();
+		for(User user:list)
+			if (username.equals(user.getUsername()) && password.equals(user.getPassword()))
+					return true;
+		return false;
+	}
 }
 	
 		
