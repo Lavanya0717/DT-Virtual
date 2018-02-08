@@ -12,6 +12,7 @@ import com.Dao.SupplierDao;
 import com.Model.Supplier;
 
 @Repository("supplierDao")
+@Transactional
 public class SupplierDaoImpl implements SupplierDao {
 
 	@Autowired
@@ -21,7 +22,7 @@ public class SupplierDaoImpl implements SupplierDao {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	@Transactional
+	
 	@Override
 	public boolean addSupplier(Supplier supplier) {
 		Session session = sessionFactory.getCurrentSession();
@@ -33,7 +34,7 @@ public class SupplierDaoImpl implements SupplierDao {
 		}
 	}
 	
-	@Transactional
+	
 	@Override
 	public boolean deleteSupplier(Supplier supplier) {
 		Session session = sessionFactory.getCurrentSession();
@@ -45,7 +46,7 @@ public class SupplierDaoImpl implements SupplierDao {
 		}
 	}
 	
-	@Transactional
+	
 	@Override
 	public boolean updateSupplier(Supplier supplier) {
 		Session session = sessionFactory.getCurrentSession();
@@ -59,20 +60,18 @@ public class SupplierDaoImpl implements SupplierDao {
 
 	@Override
 	public Supplier getSupplierById(int id) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		try {
 			Supplier supplier=session.get(Supplier.class,id);
-			session.close();
-			return supplier;
+				return supplier;
 		} catch (Exception e) {
-			session.close();
-			return null;
+			    return null;
 		}
 		
 	}
 	@Override
 	public List<Supplier> getAllSupplier() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<Supplier> list=session.createQuery("from Supplier",Supplier.class).list();
 		return list;
 	}

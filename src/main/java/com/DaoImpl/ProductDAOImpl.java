@@ -14,6 +14,7 @@ import com.Dao.ProductDAO;
 import com.Model.Product;
 
 @Repository("productDAO")
+@Transactional
 public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
@@ -23,7 +24,6 @@ public class ProductDAOImpl implements ProductDAO {
 	}
 	
 	@Override
-	@Transactional
 	public void insertOrUpdateProduct(Product product) 
 		{
 			Session session=sessionFactory.getCurrentSession();
@@ -32,23 +32,25 @@ public class ProductDAOImpl implements ProductDAO {
 
 	@Override
 	public Product getProduct(int prod_id) {
-		Session session=sessionFactory.openSession();
+		Session session=sessionFactory.getCurrentSession();
+		try{
 		Product product=session.get(Product.class,prod_id);
-		session.close();
-		return product;
+			return product;
+		}
+		catch(Exception e){
+			return null;
+		}
 	}
 
 	@Override
 	public List<Product> getAllProduct() {
-		Session session=sessionFactory.openSession();
+		Session session=sessionFactory.getCurrentSession();
 		List<Product> list=session.createQuery("from Product",Product.class).list();
-		session.close();
-		return list;
+			return list;
 	}
 
 	
 	@Override
-	@Transactional
 	public void deleteProduct(Product product) {
 		
 		sessionFactory.getCurrentSession().delete(product);

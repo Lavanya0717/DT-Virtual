@@ -12,6 +12,7 @@ import com.Dao.CategoryDAO;
 import com.Model.Category;
 
 @Repository("categoryDAO")
+@Transactional
 public class CategoryDAOImpl implements CategoryDAO {
 
 	@Autowired
@@ -23,7 +24,6 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	
 	@Override
-	@Transactional
 	public boolean addCategory(Category category) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
@@ -36,7 +36,6 @@ public class CategoryDAOImpl implements CategoryDAO {
 	
 
 	@Override
-	@Transactional
 	public boolean deleteCategory(Category category) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
@@ -48,7 +47,6 @@ public class CategoryDAOImpl implements CategoryDAO {
 	}
 
 	@Override
-	@Transactional
 	public boolean updateCategory(Category category) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
@@ -61,14 +59,12 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public Category getCategoryById(int id) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		try {
 			Category category=session.get(Category.class,id);
-			session.close();
-			return category;
+				return category;
 		} catch (Exception e) {
-			session.close();
-			return null;
+				return null;
 		}
 		
 	}
@@ -76,10 +72,8 @@ public class CategoryDAOImpl implements CategoryDAO {
 
 	@Override
 	public List<Category> getAllCategory() {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		List<Category> list=session.createQuery("from Category",Category.class).list();
 		return list;
 	}
 }
-	
-

@@ -18,6 +18,7 @@ import com.Model.User;
 
 
 @Repository("userDao")
+@Transactional
 public class UserDaoImpl implements UserDao {
 	@Autowired
 	SessionFactory sessionFactory;
@@ -26,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 		this.sessionFactory = sessionFactory;
 	}
 
-	@Transactional
+	
 	public boolean addUserDetails(User user) {
 		Session session = sessionFactory.getCurrentSession();
 		try {
@@ -36,13 +37,14 @@ public class UserDaoImpl implements UserDao {
 			return false;
 		}
 	}
+	
+	
 	public boolean validateUser(String username, String password) {
-		Session session = sessionFactory.openSession();
+		Session session = sessionFactory.getCurrentSession();
 		Query<User> query=session.createQuery("from User where username=:user and password=:pass");
 		query.setParameter("user", username);
 		query.setParameter("pass",password);
 		List<User> list=query.list();
-		session.close();
 		for(User user:list)
 			if (username.equals(user.getUsername()) && password.equals(user.getPassword()))
 					return true;
