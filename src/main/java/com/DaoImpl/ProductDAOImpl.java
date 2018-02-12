@@ -14,16 +14,18 @@ import com.Dao.ProductDAO;
 import com.Model.Product;
 
 @Repository("productDAO")
-@Transactional
+
 public class ProductDAOImpl implements ProductDAO {
 
 	@Autowired
+	
 	SessionFactory sessionFactory;
 	public ProductDAOImpl(SessionFactory sessionFactory){
 		this.sessionFactory=sessionFactory;
 	}
 	
 	@Override
+	@Transactional
 	public void insertOrUpdateProduct(Product product) 
 		{
 			Session session=sessionFactory.getCurrentSession();
@@ -31,6 +33,7 @@ public class ProductDAOImpl implements ProductDAO {
 		}
 
 	@Override
+	@Transactional
 	public Product getProduct(int prod_id) {
 		Session session=sessionFactory.getCurrentSession();
 		try{
